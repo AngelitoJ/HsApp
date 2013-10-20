@@ -1,3 +1,8 @@
+
+-- HsApp:  A Generic console application, for testing miscelaneous facilities 
+--         @2013 Angel Alvarez,
+-- 
+
 module Options 
 	(
 		  OptsResult(..)
@@ -12,25 +17,25 @@ import Text.Show.Functions
 
 
 
--- An EitherT container to store parsed opts from commandline or error messages
+-- An EitherT container to store parsed opts from commandline and posible error messages
 type OptsResult = EitherT String IO Options
 
--- An Opts filter runnng in the EitherT IO Stack
+-- An Opts filter is an Options processing function running inside the EitherT IO Stack
 type OptsFilter = ( Options -> OptsResult )
 
--- A Policy describing a command line options with a checking filter
+-- A Policy describes a getopt command line descriptor along checking filter
 type OptsPolicy = OptDescr OptsFilter
-
 
 
 -- Record for storing cmdline options
 data Options = Options
- { optDump        :: Bool
- , optModules     :: [(String,(Options-> IO()))]
- , optMode        :: Maybe (Options->IO())
- , optVerbose     :: Bool
- , optShowVersion :: Bool
- , optOutput      :: Maybe FilePath
- , optDataDir     :: Maybe FilePath
- , optInput       :: [FilePath]
+ { 
+ 	  optDump        :: Bool                         -- flag to force a options record printout
+ 	, optModules     :: [(String,(Options-> IO()))]  -- posible payloads that this program carry
+ 	, optMode        :: Maybe (Options->IO())        -- the selected payload module among all in optModules
+ 	, optVerbose     :: Bool                         -- simple verbose flag
+ 	, optShowVersion :: Bool                         -- flag to indicate a version printout
+ 	, optOutput      :: Maybe FilePath               -- Optional path to output results
+ 	, optDataDir     :: Maybe FilePath               -- Optional dir to base all file lookups
+ 	, optInput       :: [FilePath]                   -- List of arguments (TODO: maybe file or other types, right now they are treated like files)
  } deriving (Show)
