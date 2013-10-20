@@ -1,5 +1,5 @@
 
--- HsApp:  A Generic console application, for testing miscelaneous facilities 
+-- HsApp:  Simple Generic console application, for testing miscelaneous facilities 
 --         @2013 Angel Alvarez,
 -- 
 
@@ -37,7 +37,7 @@ import Paths_HsApp as HsApp
 import Options
 
 
-progName = "Universal Parser, Version:" ++ currVersion ++ " "
+progName = "Universal application, Version:" ++ currVersion ++ " "
     where
         currVersion :: String
         currVersion = showVersion HsApp.version
@@ -141,7 +141,7 @@ progOpts args defaultOptions acceptedOptions =
 
 
 -- =============================================== Monadic Options checkers =======================================
--- getOpt will partially apply against the supplied argument do we can just come over the options record
+-- getOpt will partially apply the user supplied argument so we can just go over the options record
           
           
 -- Who we are?, sort of alien outbreak?
@@ -184,7 +184,6 @@ check_operation_mode mode optsR@Options { optModules = modules } = return $ opts
                               Just (_,fun) -> Just fun
                               Nothing      -> Nothing
         findmodule :: String -> [(String, (Options-> IO()))] -> Maybe (String,(Options -> IO ()))
---         findmodule mode modules = find (\(x,_) -> x == mode ) modules 
         findmodule mode = find ((== mode).fst)  
 
 

@@ -1,3 +1,4 @@
 .DT_Store
 bin/*
 dist/*
+bin/HsApp
