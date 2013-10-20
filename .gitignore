@@ -1,1 +1,3 @@
 .DT_Store
+bin/*
+dist/*
