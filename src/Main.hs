@@ -46,15 +46,16 @@ progAuthors = "@2013 Angel Alvarez"
 
 -- default options
 defaultOptions    = Options
- { optDump        = False
- , optModules     = [("print",printFiles)]
- , optMode        = Nothing
- , optVerbose     = False
- , optShowVersion = False
- , optOutput      = Nothing
- , optDataDir     = Nothing
- , optInput       = []
- }
+    {
+        optDump        = False
+      , optModules     = [("print",printFiles)]
+      , optMode        = Nothing
+      , optVerbose     = False
+      , optShowVersion = False
+      , optOutput      = Nothing
+      , optDataDir     = Nothing
+      , optInput       = []
+    }
 
 -- currently supported options
 acceptedOptions :: [OptsPolicy]
